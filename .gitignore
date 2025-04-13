@@ -1,0 +1,44 @@
+# Python generated files
+__pycache__/
+*.pyc
+*.pyd
+*.egg-info
+.mypy_cache/
+.dmypy.cache/
+.ruff_cache/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Log files
+*.log
+logs/
+
+# IDE specific files (adjust as needed)
+.idea/
+.vscode/
+*.iml
+*.pyproj
+
+# Distribution / Packaging
+build/
+dist/
+*.whl
+*.egg
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Other temporary files
+*.tmp
+*.swp
+*.swo
