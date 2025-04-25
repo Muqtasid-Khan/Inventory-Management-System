@@ -5,8 +5,15 @@ class Product:
         self.supplier = supplier
         self.quantity = quantity
 
+    # __**Added stock level threshold attribute**__
+        self.min_stock = 10  # Default low stock threshold
+
     def update_stock(self, amount):
         self.quantity += amount
+
+    # __**Added method to check low stock status**__
+    def is_low_stock(self):
+        return self.quantity < self.min_stock
 
 class Category:
     def __init__(self, name):
@@ -31,8 +38,16 @@ class Stock:
     def add_product(self, product):
         self.inventory[product.name] = product
 
+     # __**Modified report to include low stock warning**__
     def generate_report(self):
-        return {name: product.quantity for name, product in self.inventory.items()}
+        report = {}
+        for name, product in self.inventory.items():
+            report[name] = {
+                "quantity": product.quantity,
+                # __**Include low stock alert in report**__
+                "low_stock": product.is_low_stock()
+            }
+        return report
 
 # Example usage
 supplier1 = Supplier("ABCSuppliers", "123-456-789")
@@ -45,4 +60,6 @@ stock = Stock()
 stock.add_product(product1)
 
 supplier1.supply_product(product1, 20)
+
+# __**Print full report including low stock alert**__
 print(stock.generate_report())
