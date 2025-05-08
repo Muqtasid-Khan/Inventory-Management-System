@@ -5,7 +5,7 @@ class Product:
         self.supplier = supplier
         self.quantity = quantity
 
-    # __**Added stock level threshold attribute**__
+        # __**Added stock level threshold attribute**__
         self.min_stock = 10  # Default low stock threshold
 
     def update_stock(self, amount):
@@ -14,6 +14,22 @@ class Product:
     # __**Added method to check low stock status**__
     def is_low_stock(self):
         return self.quantity < self.min_stock
+
+class Customer:
+    def __init__(self, name, contact):
+        self.name = name
+        self.contact = contact
+        self.purchase_history = []
+
+    def purchase_product(self, product, quantity):
+        if product.quantity >= quantity:
+            product.update_stock(-quantity)
+            self.purchase_history.append({
+                "product": product.name,
+                "quantity": quantity
+            })
+        else:
+            raise ValueError("Insufficient stock to complete the purchase")
 
 class Category:
     def __init__(self, name):
